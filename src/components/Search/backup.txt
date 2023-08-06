@@ -1,0 +1,45 @@
+div>
+      {/* Input pencarian */}
+      <input
+        type="text"
+        placeholder="Cari data..."
+        value={searchTerm}
+        onChange={e => setSearchTerm(e.target.value)}
+      />
+
+      {/* Data cards */}
+      {currentData.map(item => (
+        <div key={item.id} className="card">
+          <h2>{item.name}</h2>
+          <p>{item.description}</p>
+        </div>
+      ))}
+
+      {/* Pagination */}
+      <Pagination
+        itemsPerPage={itemsPerPage}
+        totalItems={filteredData.length}
+        currentPage={currentPage}
+        paginate={paginate}
+      />
+    </div>
+
+    fetch('https://api.example.com/data')
+    //   .then(response => response.json())
+    //   .then(data => setData(data));
+
+    <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" onChange={(e) => setFilterCategory(e.target.value)} value={filterCategory} >
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu">
+    <li value="name">Nama</li>
+    <li value="description">Deskripsi</li>
+    
+  </ul>
+</div>
+
+<select onChange={(e) => setFilterCategory(e.target.value)} value={filterCategory}>
+                    <option value="name">Nama</option>
+                    <option value="description">Deskripsi</option>
+                  </select>
