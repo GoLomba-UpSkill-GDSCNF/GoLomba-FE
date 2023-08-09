@@ -5,7 +5,7 @@ const dummyData = [
         description: "Competition 1 description",
         image: "https://golomba.io/images/competition1.jpg",
         tags: [
-          "tag1",
+          "sciencedata",
           "tag2"
         ],
         education_level_id: 0,

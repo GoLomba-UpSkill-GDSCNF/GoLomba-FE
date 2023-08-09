@@ -1,3 +1,8 @@
+
+:root {
+    --background-color: #DBD3D2;
+}
+
 .search-bar {
     display: flex;
     justify-content: center;
@@ -52,6 +57,10 @@
     outline: none;
   }
   
+.field {
+    background-color: var(--background-color);
+    color: var(--background-color);
+}
   
   
   

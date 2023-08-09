@@ -1,12 +1,16 @@
 import Search from "./components/Search/Search"
-// kalo udah import aja langsung componentnya
-// import Hero from "./components/Hero/Hero"
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
 
   return (
     <div className='App'>
-      <Search />
+      <Router>
+      <Routes>
+        <Route path="/" element={<Search /> } />
+      </Routes>
+    </Router>
+
     </div>
   )
 }

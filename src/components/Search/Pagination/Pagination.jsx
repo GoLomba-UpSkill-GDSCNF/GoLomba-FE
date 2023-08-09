@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 const Pagination = ({ itemsPerPage, totalItems, currentPage, paginate }) => {
     const pageNumbers = [];
@@ -9,13 +10,17 @@ const Pagination = ({ itemsPerPage, totalItems, currentPage, paginate }) => {
     return (
       <nav>
         <ul className="pagination">
-          {pageNumbers.map(number => (
-            <li key={number} className="page-item">
-              <button className="page-link" onClick={() => paginate(number)}>
-                {number}
-              </button>
-            </li>
-          ))}
+        {pageNumbers.map(number => (
+          <li key={number} className="page-item">
+            <Link
+              to={`/?page=${number}`} // Ubah URL sesuai halaman yang dipilih
+              className="page-link"
+              onClick={() => paginate(number)}
+            >
+              {number}
+            </Link>
+          </li>
+        ))}
         </ul>
       </nav>
     );
