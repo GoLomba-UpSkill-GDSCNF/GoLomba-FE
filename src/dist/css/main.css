@@ -1,0 +1,265 @@
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+:root {
+    --primary-color: #f6f8fd;
+    --secondary-color: #dc3545;
+    --color-text: #231942;
+    --navbar-color: #D9D9D9;
+    --navbar-color-text: #000000;
+  }
+
+  /* Ini Style Navbar */
+
+  
+  .navbar {
+    background: #D9D9D9;
+    position: fixed;
+    padding: 15px 0 15 px 0;
+    width: 100%;
+  }
+  
+  .nav-link a {
+    margin-top: 10px;
+    padding: 5px 10px 5px 10px;
+    font-weight: 530;
+    text-decoration: none;
+    color :#503535;
+  }
+
+  .nav-link .active{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+  }
+
+  .nav-link .active:hover{
+    color:var(--secondary-color)
+  }
+
+  .navbar.nav-link a:hover{
+    color: var(--secondary-color);
+  }
+
+  .navbar.color-active {
+    background-color: var(--navbar-color);
+    padding: 20px 0;
+    border-bottom: 2px solid #dc354681; /* Perbaikan: 2px tanpa spasi */
+  }
+  
+  
+
+ /* Ini Style HomePage Header */
+
+header {
+  background: #FF6551;
+} 
+
+.homepage .header-box h1{
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--color-text) ;
+}
+
+.homepage .header-box h3{
+  font-size: 20px;
+  color: var(--color-text) ;
+}
+
+.homepage .header-box h1 span {
+  font-weight: 900;
+  font-size: 2.8rem;
+  color: var(--primary-color);
+}
+
+.homepage .header-box p{
+  line-height: 2;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.homepage .header-box img{
+  width: 100%;
+}
+
+@media screen and (max-width: 992px) {
+  .homepage .header-box {
+  padding-top: 9rem ;
+  }
+}
+
+@media screen and (max-width: 575px) {
+ .homepage .header-box h1 {
+  font-size: 3 rem;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .homepage .header-box h1 {
+    font-size: 2.4rem;
+  }
+}
+  
+ .homepage .header-box img {
+  width: 460px;
+ }
+
+ @media screen and (max-widht: 375px) {
+  .homepage .header-box h1 {
+    font-size: 2rem;
+  }
+ }
+
+ /* Ini Style Homepage Lomba */
+ .homepage .lomba {
+  background-color: var(--primary-color);
+  padding-bottom: 100px;
+ }
+
+ .homepage .lomba .row:nth-child(1){
+  padding-top: 150px;
+  padding-bottom: 100px;
+ }
+
+ .homepage .lomba .row:nth-child(1) h1 {
+  color: var(--color-text);
+ }
+
+ .homepage .lomba .row:nth-child(1) p {
+  color: var(--color-text);
+ }
+
+ /* Mengubah kolom secara otomatis saat dikecilkan tampilannya */
+
+ .homepage .lomba .row:nth-child(2){
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+ }
+
+ .homepage .lomba .row:nth-child(2) img {
+  width: 100%;
+  /* memberi garis sejajar tiap poster */
+  height: 250px; 
+  padding-inline: 9x;
+ }
+
+ .homepage .lomba .row:nth-child(2) .col{
+  background-color: #f6f8fd;
+  padding: 0;
+ }
+
+ .homepage .lomba .row:nth-child(2) .star i{
+  color: gold;
+ }
+
+ .homepage .lomba .row:nth-child(2) h5 {
+  color: var(--color-text);
+  font-weight: bold;
+  line-height: 1,5;
+ }
+
+ .homepage .lomba .row:nth-child(3) {
+  padding-top: 60px;
+ }
+
+ /* Ini  Style About */
+ .homepage .about {
+  background-color: var(--primary-color) ;
+ }
+
+ .homepage .about h1 {
+  color: var(--color-text);
+ }
+
+  .homepage .about img {
+    width: 100%;
+  }
+
+  .homepage .about h1 {
+    font-weight: 600;
+    font-size: 2.3rem;
+  }
+
+  .homepage .about-box h1 span {
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+  }
+
+  .homepage .about-box {
+    font-size: 16px;
+    font-style: inherit;
+  }
+
+ 
+  /* Ini  Style About */
+
+  /* Footer */
+  .footer {
+    background: #D9D9D9;
+    width: 100;
+    min-height: 60vh;
+  }
+
+  .footer .row:nth-child(1) h3{
+    font-weight: 900px;
+  }
+
+  .footer .row:nth-child(1) ket {
+    color: var(--color-text);
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  .footer .simbol a,
+  .footer.simbol a {
+    display: flex;
+    align-items: center;
+    color: black;
+    column-gap: 5px;
+  }
+
+  .footer .simbol a:hover {
+   color: var(--secondary-color);
+  }
+
+  .footer .row:nth-child(1) .col:nth-child(2){
+  gap: 10px;
+  }
+
+  .footer .row:nth-child(1) .col:nth-child(2) a {
+    color: black;
+    text-decoration: none;
+    font-size: 14;
+  }
+
+  .footer .row:nth-child(1) .col:nth-child(2)
+   a:hover {
+    color: var(--secondary-color);
+  }
+
+  .footer .sosial {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer .sosial i {
+    font-size: 25px;
+    cursor: pointer;
+    transition : all 0.3s ease;
+    -webkit-transition: all 0.3s ease ;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+  }
+
+  .footer .sosial i:hover {
+    color: var(--secondary-color);
+  }
+
+  .footer .row:nth-child(2) {
+    margin-top: 100px;
+  }
+
+   /* Footer */
