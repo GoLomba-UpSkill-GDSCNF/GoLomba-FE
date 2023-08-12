@@ -1,0 +1,109 @@
+
+:root {
+    --background-color: #DBD3D2;
+    --non-active-color: #726565;
+    --primary-color: #FF6551;
+    --secondary-color: #FFE5CA;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown {
+  width: auto;
+}
+
+.cardData {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* margin-top: 20px; */
+}
+
+.card-container {
+    transition: 0.3s;
+}
+
+.card-container:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page-item {
+    margin: 0 0.5rem;
+  }
+  
+.page-link {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+  
+  .page-link:hover {
+    background-color: #0056b3;
+  }
+  
+.page-link:focus {
+    outline: none;
+  }
+  
+.form-select {
+    background-color: #DBD3D2 !important;
+    color: #726565 !important;
+}
+
+.form-control {
+    background-color: #DBD3D2 !important;
+    color: #726565 !important;
+}
+
+.btn-primary {
+    background-color: #FF6551 !important;
+    border-color: #FF6551 !important;
+    border-radius: 5px !important;
+}
+
+.card {
+    width: 16rem;
+    /* height: 5rem; */
+    margin: 10px;
+    border-radius: 5px;
+    background-color: #FFE5CA !important;
+    border-color: #FFE5CA !important;
+
+}
+
+.btn-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+  
+  
+  
+  
