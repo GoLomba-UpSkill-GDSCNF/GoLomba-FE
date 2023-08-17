@@ -164,36 +164,160 @@ header {
  }
 
  /* Ini  Style About */
- .homepage .about {
+ .about {
   background-color: var(--primary-color) ;
  }
 
- .homepage .about h1 {
+ .about h1 {
   color: var(--color-text);
  }
 
-  .homepage .about img {
+  .about img {
     width: 100%;
   }
 
-  .homepage .about h1 {
+  .about h1 {
     font-weight: 600;
     font-size: 2.3rem;
   }
 
-  .homepage .about-box h1 span {
+  .about-box h1 span {
     font-weight: 700;
     font-size: 2.5rem;
     color: var(--secondary-color);
   }
 
-  .homepage .about-box {
+  .about-box {
     font-size: 16px;
     font-style: inherit;
   }
 
  
   /* Ini  Style About */
+
+  /* Artikel */
+
+  .artikel {
+    background-color: var(--secondary-color) ;
+    padding: 100px;
+  }
+
+  .artikel .row:nth-child(1) {
+    padding-top: 250px;
+    padding-bottom: 100px;
+  }
+
+ /* Ini Style Login */
+
+ .homepage .login {
+  background-color: var(--primary-color) ;
+  padding-top: 20px;
+ }
+
+ .homepage .login h2 {
+  color: var(--navbar-color-text);
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.64px;
+ }
+
+/* Reset top and bottom margins from certain elements */
+
+.login-header,
+.login p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.login-header {
+  background: var(--navbar-color);
+  padding: 20px;
+  font-size: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+}
+.login-container {
+  padding: 12px;
+  border: none;
+}
+/* Every row inside .login-container is defined with p tags */
+.login p {
+  padding: 12px;
+}
+.login input {
+  box-sizing: border-box;
+  border: none; /* Hapus properti ini untuk menghilangkan kotak di sekitar input */
+  border-bottom: 2px solid #333;
+  border-width: 1px;
+  list-style: none;
+  width: 100%;
+  padding: 16px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.95em;
+}
+.login input[type="email"],
+.login input[type="password"] {
+  color: var(--navbar-color-text) ;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.70px;
+  background-color: var(--primary-color);
+}
+
+
+/* Text fields' focus effect */
+.login input[type="email"]:focus,
+.login input[type="password"]:focus {
+  border-color: #888;
+}
+
+
+.custom-button {
+  width: 330px; /* Atur lebar sesuai preferensi Anda */ 
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #FF6551;
+  font-size: 19px; /* Ganti nilai sesuai preferensi Anda */
+  color: var(--color-text);
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: 0.4px;
+  color: var(--primary-color);
+}
+
+
+.custom-link {
+  text-decoration: none;
+}
+
+
+.custom-button1 {
+  width: 330px; /* Atur lebar sesuai preferensi Anda */
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px solid #8D8D8D;
+  font-size: 19px; /* Ganti nilai sesuai preferensi Anda */
+  color: var(--color-text);
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.4px;
+}
+
+  /* Ini Style Login */
+
 
   /* Footer */
   .footer {
@@ -261,5 +385,3 @@ header {
   .footer .row:nth-child(2) {
     margin-top: 100px;
   }
-
-   /* Footer */
