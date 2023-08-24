@@ -1,7 +1,7 @@
 /* pagination.css */
 
 :root {
-    --background-color: #DBD3D2;
+    --background-color-pag: #DBD3D2;
     --non-active-color: #726565;
     --primary-color: #FF6551;
     --secondary-color: #FFE5CA;
@@ -36,7 +36,7 @@
   }
   
   .page-link:not(.active) {
-    background-color: var(--background-color) !important;
+    background-color: var(--background-color-pag) !important;
     color: var(--non-active-color);
   }
 

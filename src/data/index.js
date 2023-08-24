@@ -11,11 +11,13 @@ import KelasImage9 from "../assets/img/kelas/kelas-9.jpg";
 import People1 from "../assets/img/testimonial/people-1.jpg";
 import People2 from "../assets/img/testimonial/people-2.jpg";
 import People3 from "../assets/img/testimonial/people-3.jpg";
+import testi1 from "../assets/img/testimonial/testi1.png";
+import testi2 from "../assets/img/testimonial/testi2.png";
 
 export const navLinks = [
   {
     id: 1,
-    path: "halamanutama",
+    path: "",
     text: "Home",
   },
   {
@@ -25,8 +27,8 @@ export const navLinks = [
   },
   {
     id: 3,
-    path: "artikel",
-    text: "Artikel",
+    path: "about",
+    text: "About",
   },
   {
     id: 4,
@@ -43,7 +45,7 @@ export const dummyData = [
       description: "Competition 1 description",
       image: "https://marketplace.canva.com/EAFIyjyiv0M/1/0/1200w/canva-poster-pengumuman-lomba-tujuhbelasan-sekolah-ilustratif-krem-merah-putih-hijau-iBpzuU7c2Qw.jpg",
       tags: [
-        "science+data",
+        "science data",
         "tag2"
       ],
       education_level_id: "SMA",
@@ -522,3 +524,32 @@ export const faq = [
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
   },
 ];
+
+export const testimoni = [
+  {
+    "id": 1,
+    "name": "Syadza",
+    "image": testi1,
+    "message": "Terima kasih golomba, saya jadi tau lomba-lomba yang sesuai dengan peminatan saya",
+    "star1": "fa-solid fa-star",
+    "star2": "fa-solid fa-star",
+    "star3": "fa-solid fa-star",
+    "star4": "fa-solid fa-star",
+    "star5": "fa-solid fa-star-half-stroke",
+    "from": "Universitas Indonesia"
+  },
+  {
+    "id": 2,
+    "name": "Rika",
+    "message": "Baguss bangett, lengkap jugaaa. alhamdulillah aku menang lomba UI UX di UI",
+    "image": testi2,
+    "star1": "fa-solid fa-star",
+    "star2": "fa-solid fa-star",
+    "star3": "fa-solid fa-star",
+    "star4": "fa-solid fa-star",
+    "star5": "fa-solid fa-star-half-stroke",
+    "from": "Universitas Diponegoro"
+  }
+];
+
+export default testimoni;

@@ -1,148 +1,197 @@
 import { useState, useEffect } from 'react';
 import Paginationcomponent from '../../components/Paginationcomponent/Paginationcomponent';
 import { Container, Row, Col } from 'react-bootstrap';
-import { dummyData } from '../../data/index';
+import { fetchDataFromApi } from '../../data/fetchDataFromApi';
+import { formatDate } from '../../data/function';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Logo from '../../assets/img/logo/logo-go-lomba.svg';
 import './index.css';
 
-
 const SearchPage = () => {
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const searchTermFromURL = searchParams.get('search');
-    const tagsFromURL = searchParams.get('tags');
-    const educationLevelIdFromURL = searchParams.get('education_level_id');
-    const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const searchTermFromURL = searchParams.get('search');
+  const tagsFromURL = searchParams.get('tags');
+  const educationLevelIdFromURL = searchParams.get('education_levels');
+  const navigate = useNavigate();
 
-    const [data, setData] = useState([]);
-    const [filteredData, setFilteredData] = useState([]);
-    const [searchTerm, setSearchTerm] = useState(searchTermFromURL || '');
-    const [currentPage, setCurrentPage] = useState(1);
-    const [educationLevelId, setEducationLevelId] = useState(parseInt(educationLevelIdFromURL) || '');
-    const [tags, setTags] = useState(tagsFromURL || '');
-    const itemsPerPage = 8;
+  const [data, setData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(searchTermFromURL || '');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [educationLevelId, setEducationLevelId] = useState(
+    parseInt(educationLevelIdFromURL) || ''
+  );
+  const [tags, setTags] = useState(tagsFromURL || '');
+  const [totalPages, setTotalPages] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
 
-    console.log(educationLevelId);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
+  const handleSearch = () => {
+    setCurrentPage(1);
 
-    const handleSearch = () => {
-        const filteredResults = data.filter(item =>
-            item.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-            (tags === '' || item.tags.includes(tags)) &&
-            (educationLevelId === '' || item.education_level_id === educationLevelId)
-        );
-        setFilteredData(filteredResults);
-        setCurrentPage(1);
+    const searchParams = new URLSearchParams();
+    searchParams.append('search', searchTerm);
+    searchParams.append('tags', tags);
+    searchParams.append('education_levels', educationLevelId);
+    navigate(`?${searchParams.toString()}`);
+  };
 
-        const searchParams = new URLSearchParams();
-        searchParams.append('search', searchTerm);
-        searchParams.append('page', currentPage);
-        searchParams.append('page_size', itemsPerPage);
-        searchParams.append('edu_levels', educationLevelId);
-        searchParams.append('tags', tags);
+  useEffect(() => {
+    fetchDataFromApi()
+      .then((apiData) => {
+        setData(apiData.rows);
+        setTotalPages(apiData.total_pages);
+        setItemsPerPage(apiData.limit);
+      })
+      .catch((error) => {
+        console.error('Error fetching data from API:', error);
+      });
+  }, []);
 
-        navigate(`?${searchParams.toString()}`);
-    };
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentData = data
+    ? data
+        .filter((item) =>
+          item.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+          (tags === '' || item.tags.map((tag) => tag.name).includes(tags)) &&
+          (educationLevelId === '' ||
+            item.education_levels.map((level) => level.name).includes(educationLevelId))
+        )
+        .slice(indexOfFirstItem, indexOfLastItem)
+    : [];
 
-    useEffect(() => {
-        setData(dummyData);
-    }, []);
+  return (
+    <section id='search-page'>
+      <div className='py-5 w-100 min-vh-100'>
+        <Container>
+          <Row>
+            <Col>
+              <h1 className='text-center fw-bold'>Cari Lomba</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <div className=' my-5 search-bar'>
+                <div className='dropdown mt-2'>
+                  <select
+                    onChange={(e) => setTags(e.target.value)}
+                    value={tags}
+                    className='form-select'
+                  >
+                    <option value=''>Semua Bidang</option>
+                    {[...new Set(currentData.map((item) => item.tags.map((tag) => tag.name)).flat())].map(
+                      (tag, index) => (
+                        <option key={index} value={tag}>
+                          {tag}
+                        </option>
+                      )
+                    )}
+                  </select>
+                </div>
 
-    useEffect(() => {
-        setFilteredData(data);
-    }, [data]);
+                <div className='dropdown mt-2 ms-3'>
+                  <select
+                    onChange={(e) => setEducationLevelId(e.target.value)}
+                    value={educationLevelId}
+                    className='form-select'
+                  >
+                    <option value=''>Semua Jenjang</option>
+                    {[...new Set(currentData.map((item) => item.education_levels.map((edu_levels) => edu_levels.name)).flat())].map(
+                      (edu_levels, index) => (
+                        <option key={index} value={edu_levels}>
+                          {edu_levels}
+                        </option>
+                      )
+                    )}
+                  </select>
+                </div>
 
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentData = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+                <div className='form-outline ms-5 mt-2'>
+                  <input
+                    type='search'
+                    placeholder='Cari lomba...'
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className='form-control'
+                  />
+                </div>
 
-    const paginate = pageNumber => setCurrentPage(pageNumber);
+                <button onClick={handleSearch} className='btn btn-primary ms-3 mt-2 '>
+                  Cari
+                </button>
+              </div>
+            </Col>
+          </Row>
 
-    return (
-        <section className='search-page'>
-            <div className='py-5 w-100 min-vh-100'>
-                <Container>
-                    <Row>
-                        <Col>
-                            <div className='input-group my-5 search-bar'>
+          <Row className='card-competition'>
+            {currentData.length > 0 ? (
+              currentData.map((item) => (
+                <Col key={item.id} sm={3}>
+                  <div className=''>
+                    <div
+                      className='card text-dark card-has-bg click-col'
+                      style={{ backgroundImage: `url(${item.image})` }}
+                    >
+                      <img src={item.image} className='card-img d-none' alt='...' />
+                      <div className='card-img-overlay d-flex flex-column'>
+                        <div className='card-body'>
+                          <small className='card-meta mb-2 d-flex'>
+                            <span className='app-brand-logo demo'>
+                              <img src={Logo} alt='logo-golomba' width='20px' />
+                            </span>
+                            <span className='app-brand-text demo menu-text fw-bolder fs-6 ms-1'>
+                              GoLomba
+                            </span>
+                          </small>
+                          <h3 className='card-title mt-0'>
+                            <a href='' className='text-dark'>
+                              {item.name}
+                            </a>
+                          </h3>
+                          <small>
+                            <i className='far fa-clock'></i> {formatDate(item.end_registration_date)}
+                          </small>
+                        </div>
+                        <div className='card-footer'>
+                          <p>{item.description}</p>
+                        </div>
+                        <div className='btn-more'>
+                          <Link to={`/competition/${item.id}`} className='btn btn-primary'>
+                            Lihat Selengkapnya
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              ))
+            ) : (
+              <p className='text-center'>Maaf, data tidak ditemukan</p>
+            )}
+          </Row>
 
-                                <div className='dropdown mt-2'>
-                                    <select onChange={(e) => setTags(e.target.value)} value={tags} className='form-select'>
-                                        <option value=''>Semua Bidang</option>
-                                        <option value="science data">Science data</option>
-                                        <option value="machine learning">Machine Learning</option>
-                                    </select>
-                                </div>
-
-                                <div className='dropdown mt-2 ms-3'>
-                                    <select onChange={(e) => setEducationLevelId(e.target.value)} value={educationLevelId} className='form-select'>
-                                        <option value=''>Semua Jenjang</option>
-                                        <option value="SD">SD</option>
-                                        <option value="SMP">SMP</option>
-                                        <option value="SMA">SMA</option>
-                                        <option value="Perguruan_Tinggi">Perguruan Tinggi</option>
-                                    </select>
-                                </div>
-
-                                <div className="form-outline ms-5 mt-2">
-                                    <input
-                                        type="search"
-                                        placeholder="Cari lomba..."
-                                        value={searchTerm}
-                                        onChange={e => setSearchTerm(e.target.value)}
-                                        className='form-control'
-                                    />
-                                </div>
-
-                                <button onClick={handleSearch} className='btn btn-primary ms-3 mt-2 '>Cari</button>
-                            </div>
-                        </Col>
-                    </Row>
-
-                    <Row>
-                        {currentData.length > 0 ? (
-                            currentData.map(item => (
-                                <Col key={item.id} sm={3}>
-                                    <div className="cardData">
-                                        <div className="card card-container">
-                                            <img src={item.image} className="card-img-top" alt="..." />
-                                            <div className="card-body">
-                                                <div className="card-title text-center">
-                                                    <h3>{item.name}</h3>
-                                                </div>
-                                                <div className="card-text text-center">
-                                                    <p>{item.description}</p>
-                                                </div>
-                                                <div className="btn-more">
-                                                    <a href='' className='btn btn-primary'>Lihat Selengkapnya</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </Col>
-                            ))
-                        ) : (
-                            <p className='text-center'>Maaf, data tidak ditemukan</p>
-                        )}
-                    </Row>
-
-                    <Row>
-                        <Col>
-                            <div className="pagination-container">
-                                <Paginationcomponent
-                                    itemsPerPage={itemsPerPage}
-                                    totalItems={filteredData.length}
-                                    currentPage={currentPage}
-                                    paginate={paginate}
-                                />
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-        </section>
-    );
+          <Row>
+            <Col>
+              <div className='pagination-container'>
+                <Paginationcomponent
+                  itemsPerPage={itemsPerPage}
+                  totalItems={currentData.length}
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  paginate={paginate}
+                />
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </section>
+  );
 };
 
 export default SearchPage;

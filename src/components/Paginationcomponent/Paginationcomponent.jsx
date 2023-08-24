@@ -1,21 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './index.css';
 
-const Paginationcomponent = ({ itemsPerPage, totalItems, currentPage, paginate }) => {
-    const pageNumbers = [];
-  
-    for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
-      pageNumbers.push(i);
-    }
-  
-    return (
-      <nav>
-      {pageNumbers.length > 1 && (
+const Paginationcomponent = ({ itemsPerPage, currentPage, paginate, totalItems }) => {
+  const pageNumbers = [];
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
+  const location = useLocation();
+
+  return (
+    <nav>
+      {totalPages > 1 && (
         <ul className="pagination">
           {currentPage > 1 && (
             <li className="page-item">
               <Link
-                to={`/search/?page=${currentPage - 1}`}
+                to={{ pathname: location.pathname, search: `?page=${currentPage - 1}` }}
                 className="page-link"
                 onClick={() => paginate(currentPage - 1)}
               >
@@ -26,7 +29,7 @@ const Paginationcomponent = ({ itemsPerPage, totalItems, currentPage, paginate }
           {pageNumbers.map(number => (
             <li key={number} className="page-item">
               <Link
-                to={`/search/?page=${number}`}
+                to={{ pathname: location.pathname, search: `?page=${number}` }}
                 className={`page-link ${currentPage === number ? 'active' : ''}`}
                 onClick={() => paginate(number)}
               >
@@ -34,10 +37,10 @@ const Paginationcomponent = ({ itemsPerPage, totalItems, currentPage, paginate }
               </Link>
             </li>
           ))}
-          {currentPage < pageNumbers.length && (
+          {currentPage < totalPages && (
             <li className="page-item">
               <Link
-                to={`/search/?page=${currentPage + 1}`}
+                to={{ pathname: location.pathname, search: `?page=${currentPage + 1}` }}
                 className="page-link"
                 onClick={() => paginate(currentPage + 1)}
               >
@@ -48,7 +51,7 @@ const Paginationcomponent = ({ itemsPerPage, totalItems, currentPage, paginate }
         </ul>
       )}
     </nav>
-    );
-  };
+  );
+};
 
 export default Paginationcomponent;

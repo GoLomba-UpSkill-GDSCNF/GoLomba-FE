@@ -1,0 +1,128 @@
+.container {
+    /* height: 731px; */
+    flex-shrink: 0;
+    background: #E64040;
+  }
+
+  .cardcontainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .text1 {
+    display: flex;
+    margin-left: 195px;
+    width: 796px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+    padding: 0;
+  }
+  
+  .text1 h2 {
+    color: white !important;
+    font-family: Poppins;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.2px;
+  }
+
+  .text1 p {
+    color: var(--light-text-color, #ffff);
+    margin-left: 195px;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.2px;
+  }
+  
+  .cardgroup {
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: inline;
+  }
+  
+  .card {
+    width: 401px;
+    height: 300px;
+    flex-shrink: 0;
+    margin: 26px;
+    padding: 25px;
+    background-color: white;
+    background: #fff;
+  }
+  
+  .card h2 {
+    color: var(--black-color, #073b4c);
+    text-align: center;
+    justify-content: center;
+    font-size: 39px;
+  }
+
+  .photo img {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+  }
+
+  .p1 {
+    color: var(--second-text-color, #737373);
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: 0.2px;
+  }
+  
+  .card div {
+    color: var(--second-text-color, #737373);
+    text-align: center;
+    /* paragraph */
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: 0.2px;
+  }
+
+  .testi {
+    padding: 25px;
+  }
+
+  .rating {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .testi .p2 {
+    color: var(--text-color, #252B42);
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: bold;
+    font-weight: 1000;
+    line-height: 24px; /* 150% */
+    letter-spacing: 0.1px;
+  }
+
+  .testi .p3 {
+    color: var(--second-text-color, #737373);
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 171.429% */
+    letter-spacing: 0.2px;
+  }

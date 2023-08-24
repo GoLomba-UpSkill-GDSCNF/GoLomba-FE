@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import LoginImage from "../assets/img/Ilustration.png";
 
-const LoginPage = () => {
+const RegisterPage = () => {
 
   return (
       <div className="login py-5 w-100 min-vh-100">
@@ -14,7 +14,7 @@ const LoginPage = () => {
                 <img src={LoginImage} alt="login.png" />
               </Col>
               <Col lg="6">
-                <h2 className="login text-center fw-bold">Login</h2>
+                <h2 className="login text-center fw-bold">Register</h2>
                 <form className="login-container">
                   <p>
                     <input type="email" placeholder="Email"></input>
@@ -47,4 +47,4 @@ const LoginPage = () => {
   )
 };
 
-export default LoginPage;
+export default RegisterPage;

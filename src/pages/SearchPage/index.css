@@ -17,21 +17,12 @@
 }
 
 .cardData {
-    display: flex;
+    /* display: flex;
     /* flex-direction: column; */
-    justify-content: center;
+    /* justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 100%; */ 
     /* margin-top: 20px; */
-}
-
-.card-container {
-    transition: 0.3s;
-}
-
-.card-container:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 
@@ -86,15 +77,15 @@
     border-radius: 5px !important;
 }
 
-.card {
+/* .card {
     width: 16rem;
     /* height: 5rem; */
-    margin: 10px;
+    /* margin: 10px;
     border-radius: 5px;
     background-color: #FFE5CA !important;
     border-color: #FFE5CA !important;
 
-}
+} */ 
 
 .btn-more {
     display: flex;
@@ -102,8 +93,193 @@
     align-items: center;
 }
 
+.card-competition {
+  height: 100%;
+}
+
+.card{
+    border: none;
+    transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+   overflow:hidden;
+   border-radius:20px;
+   min-height: 350px;
+   margin: 10px;
+     box-shadow: 0 0 12px 0 rgba(0,0,0,0.2);
+  
+   @media (max-width: 768px) {
+    min-height:300px;
+  }
+  
+  @media (max-width: 420px) {
+    min-height:250px;
+  }
+  
+   &.card-has-bg{
+   transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+    background-size:120%;
+    background-repeat:no-repeat;
+    background-position: center center;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: inherit;
+      -webkit-filter: grayscale(1);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);}
+  
+    &:hover {
+      transform: scale(0.98);
+       box-shadow: 0 0 5px -2px rgba(0,0,0,0.3);
+      background-size:130%;
+       transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  
+      .card-img-overlay {
+        transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+        background: rgb(255,229,202);
+       background: linear-gradient(0deg, rgba(255,229,202,0.5) 0%, rgba(255,229,202,1) 100%);
+       }
+    }
+  }
+   .card-footer{
+    background: none;
+     border-top: none;
+      .media{
+       img{
+         border:solid 3px rgba(255,255,255,0.3);
+       }
+     }
+   }
+    .card-title{font-weight:800}
+   .card-meta{color:rgba(0,0,0,0.3);
+    text-transform:uppercase;
+     font-weight:500;
+     letter-spacing:2px;}
+   .card-body{ 
+     transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+   
+  
+    }
+   &:hover {
+     .card-body{
+       margin-top:30px;
+       transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+     }
+   cursor: pointer;
+   transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+  }
+   .card-img-overlay {
+    transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+    background: rgb(255,229,202);
+       background: linear-gradient(0deg, rgba(255,229,202,0.5) 0%, rgba(255,229,202,1) 100%);
+  }
+  }
+  @media (max-width: 767px){
+    
+  }
+
+  /* Your existing CSS styles */
+
+.fixed-button-container {
+  position: fixed;
+  bottom: 30px;
+  left: 300px;
+  z-index: 999; /* Ensure it's above other content */
+}
+
+.add-competition-button {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-competition-button:hover {
+  background-color: #218838;
+}
+
+.add-icon {
+  margin-right: 5px;
+}
+
+.tooltip-text {
+  position: absolute;
+  bottom: 100%; /* Place the tooltip above the button */
+  left: 50%; /* Center the tooltip horizontally */
+  transform: translateX(-50%); /* Center the tooltip horizontally */
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 14px;
+  opacity: 0; /* Initially hidden */
+  pointer-events: none; /* To avoid blocking clicks */
+  transition: opacity 0.2s;
+}
+
+.add-competition-button:hover + .tooltip-text {
+  opacity: 1; /* Show tooltip on button hover */
+}
+
+/* Your existing CSS styles */
+
+/* .card {
+  position: relative;
+} */
+
+.card-actions {
+  display: flex;
+}
+
+.edit-button,
+.delete-button {
+  margin: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.edit-button {
+  background-color: #17a2b8;
+  color: white;
+  position: absolute;
+  left: 0;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  position: absolute;
+  right: 0;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+  background-color: #138496;
+}
+
+/* Rest of your CSS */
 
   
-  
+.custom-card {
+  background-color: #ffffff;
+  border-radius: 10px; 
+  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.08);
+  padding: 20px; 
+  transition: box-shadow 0.3s ease;
+}
+
+
   
   
