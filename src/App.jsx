@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import DashboardComponent from './components/DashboardComponent';
 import AccountSettingsComponent from './components/AccountSettingsComponent';
+import ProtectedRoute from './components/ProtectedRoute';
 import AdminPages from './pages/AdminPages/AdminPages';
 import LandingPages from './pages/LandingPages';
 import SearchPage from './pages/SearchPage/SearchPage';
@@ -28,7 +29,7 @@ function App() {
       </Routes>
 
       <Routes>
-        <Route path="/admin" element={<AdminPages />}>
+        <Route path="/admin" element={<ProtectedRoute element={<AdminPages />}/>}>
           <Route
             path="dashboard"
             element={<DashboardComponent />}

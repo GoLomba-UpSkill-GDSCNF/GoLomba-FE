@@ -1,0 +1,446 @@
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+    --primary-color: #f6f8fd;
+    --secondary-color: #dc3545;
+    --color-text: #231942;
+    --navbar-color: #D9D9D9;
+    --navbar-color-text: #000000;
+    --background-color: #E74040;
+    --bg-page: #FFE5CA;
+    --background-color-text: #FF6551;
+  }
+
+  /* Ini Style Navbar */
+
+  
+  .navbar {
+    background: #D9D9D9;
+    position: fixed;
+    padding: 15px 0 15 px 0;
+    width: 100%;
+    z-index: 99999;
+  }
+  
+  .nav-link a {
+    margin-top: 10px;
+    padding: 5px 10px 5px 10px;
+    font-weight: 530;
+    text-decoration: none;
+    color :#503535;
+  }
+
+  .nav-link a:hover {
+    color: #fff;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+  }
+
+  .nav-link .active{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border-radius: 5px;
+  }
+
+  .nav-link .active:hover{
+    /* color:var(--secondary-color); */
+  }
+
+  .navbar-collapse .btn-danger {
+    font-weight: 700;
+    font-size: small;
+    background-color: var(--background-color-text);
+    border-color: var(--background-color-text);
+    width: 118px;
+  }
+
+  .navbar-collapse .btn-danger:hover {
+    background-color: var(--background-color);
+    border-color: var(--background-color);
+  }
+
+  .navbar.color-active {
+    background-color: var(--navbar-color);
+    padding: 20px 0;
+    border-bottom: 2px solid #dc354681; /* Perbaikan: 2px tanpa spasi */
+  }
+  
+  
+
+ /* Ini Style HomePage Header */
+
+header {
+  background: var(--background-color);
+} 
+
+.homepage .header-box h1{
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #000000 ;
+}
+
+.homepage .header-box h3{
+  font-size: 20px;
+  color: #000000 ;
+}
+
+.homepage .header-box h1 span {
+  font-weight: 900;
+  font-size: 2.8rem;
+  color: var(--primary-color);
+}
+
+.homepage .header-box p{
+  line-height: 2;
+  color: #000000;
+  font-weight: 500;
+}
+
+.homepage .header-box img{
+  width: 100%;
+}
+
+@media screen and (max-width: 992px) {
+  .homepage .header-box {
+  padding-top: 9rem ;
+  }
+}
+
+@media screen and (max-width: 575px) {
+ .homepage .header-box h1 {
+  font-size: 3 rem;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .homepage .header-box h1 {
+    font-size: 2.4rem;
+  }
+}
+  
+ .homepage .header-box img {
+  width: 545px;
+ }
+
+ @media screen and (max-widht: 375px) {
+  .homepage .header-box h1 {
+    font-size: 2rem;
+  }
+ }
+
+ /* Ini Style Homepage Lomba */
+ .homepage .lomba {
+  background-color: var(--primary-color);
+  padding-bottom: 100px;
+ }
+
+ .homepage .lomba .row:nth-child(1){
+  padding-top: 150px;
+  padding-bottom: 100px;
+ }
+
+ .homepage .lomba .row:nth-child(1) h1 {
+  color: var(--color-text);
+ }
+
+ .homepage .lomba .row:nth-child(1) p {
+  color: var(--color-text);
+ }
+
+ .Typewriter {
+  display: inline-block !important;
+  margin-left: 10px;
+}
+
+ /* Mengubah kolom secara otomatis saat dikecilkan tampilannya */
+
+ .homepage .lomba .row:nth-child(2){
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+ }
+
+ .homepage .lomba .row:nth-child(2) img {
+  width: 100%;
+  /* memberi garis sejajar tiap poster */
+  height: 250px; 
+  padding-inline: 9x;
+ }
+
+ .homepage .lomba .row:nth-child(2) .col{
+  background-color: #ffff;
+  padding: 0;
+ }
+
+ .homepage .lomba .row:nth-child(2) .star i{
+  color: gold;
+ }
+
+ .homepage .lomba .row:nth-child(2) h5 {
+  color: var(--color-text);
+  font-weight: bold;
+  line-height: 1,5;
+ }
+
+ .homepage .lomba .row:nth-child(3) {
+  padding-top: 60px;
+ }
+
+
+  .searh-page {
+    z-index: 0;
+  }
+
+  /* Article style */
+
+ .article-container {
+  padding-top: 100px;
+  padding-bottom: 100px;
+ }
+
+ .article-container .article-title {
+  text-align: right;
+  margin-bottom: 50px;
+  font-weight: 600;
+ }
+
+  .article-container .article-text p {
+    text-align: justify;
+    line-height: 1.5;
+  }
+
+ .article-title .text-span {
+  color: var(--secondary-color);
+  font-weight: 700;
+  font-size: 1.25em;
+ }
+
+ /* Detail Page */
+ .detail-content {
+  /* background-color: var(--bg-page); */
+  outline: solid;
+  outline-color: var(--bg-page);
+  border-radius: 10px;
+ }
+
+ .btn-daftar {
+  background-color: var(--background-color-text) !important;
+  color: white !important;
+  border-radius: 20px !important;
+ }
+
+ /* Testimonial Page */
+ .testimonial-section {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-color: var(--secondary-color);
+ }
+
+/* Layout admin style */
+ a {
+  text-decoration: none !important;
+ }
+
+ /* about logo */
+ .about-logo {
+  font-size: 1rem;
+ }
+
+ .team-card {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  /* background-color: var(--bg-page) !; */
+ }
+
+ .avatar-image {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+ }
+
+ /* Footer */
+ .footer {
+  background: #D9D9D9;
+  width: 100;
+  min-height: 60vh;
+}
+
+.footer .row:nth-child(1) h3{
+  font-weight: 900px;
+}
+
+.footer .row:nth-child(1) ket {
+  color: var(--color-text);
+  font-size: 14px;
+  line-height: 2;
+}
+
+.footer .simbol a,
+.footer.simbol a {
+  display: flex;
+  align-items: center;
+  color: black;
+  column-gap: 5px;
+}
+
+.footer .simbol a:hover {
+ color: var(--secondary-color);
+}
+
+.footer .row:nth-child(1) .col:nth-child(2){
+gap: 10px;
+}
+
+.footer .row:nth-child(1) .col:nth-child(2) a {
+  color: black;
+  text-decoration: none;
+  font-size: 14;
+}
+
+.footer .row:nth-child(1) .col:nth-child(2)
+ a:hover {
+  color: var(--secondary-color);
+}
+
+.footer .sosial {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer .sosial i {
+  font-size: 25px;
+  cursor: pointer;
+  transition : all 0.3s ease;
+  -webkit-transition: all 0.3s ease ;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+}
+
+.footer .sosial i:hover {
+  color: var(--secondary-color);
+}
+
+.footer .row:nth-child(2) {
+  margin-top: 100px;
+}
+
+/* Ini Style Login */
+
+.login {
+  background-color: var(--primary-color) ;
+  padding-top: 20px;
+ }
+
+ .login h2 {
+  color: var(--navbar-color-text);
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.64px;
+ }
+
+/* Reset top and bottom margins from certain elements */
+
+.login-header,
+.login p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.login-header {
+  background: var(--navbar-color);
+  padding: 20px;
+  font-size: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+}
+.login-container {
+  padding: 12px;
+  border: none;
+}
+/* Every row inside .login-container is defined with p tags */
+.login p {
+  padding: 12px;
+}
+.login input {
+  box-sizing: border-box;
+  border: none; /* Hapus properti ini untuk menghilangkan kotak di sekitar input */
+  border-bottom: 2px solid #333;
+  border-width: 1px;
+  list-style: none;
+  width: 100%;
+  padding: 16px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.95em;
+}
+.login input[type="email"],
+.login input[type="text"],
+.login input[type="password"] {
+  color: var(--navbar-color-text) ;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.70px;
+  background-color: var(--primary-color);
+}
+
+
+/* Text fields' focus effect */
+.login input[type="email"]:focus,
+.login input[type="text"]:focus,
+.login input[type="password"]:focus {
+  border-color: #888;
+}
+
+
+.custom-button {
+  width: 330px; /* Atur lebar sesuai preferensi Anda */ 
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #FF6551;
+  font-size: 19px; /* Ganti nilai sesuai preferensi Anda */
+  color: var(--color-text);
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: 0.4px;
+  color: var(--primary-color);
+}
+
+
+.custom-link {
+  text-decoration: none;
+}
+
+
+.custom-button1 {
+  width: 330px; /* Atur lebar sesuai preferensi Anda */
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px solid #8D8D8D;
+  font-size: 19px; /* Ganti nilai sesuai preferensi Anda */
+  color: var(--color-text);
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.4px;
+}
+
+  /* Ini Style Login */

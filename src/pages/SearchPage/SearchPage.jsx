@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Paginationcomponent from '../../components/Paginationcomponent/Paginationcomponent';
 import { Container, Row, Col } from 'react-bootstrap';
-import { fetchDataFromApi } from '../../data/fetchDataFromApi';
+import { fetchCompetitions } from '../../data/fetchCompetitions';
 import { formatDate } from '../../data/function';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -25,9 +25,10 @@ const SearchPage = () => {
   const [tags, setTags] = useState(tagsFromURL || '');
   const [totalPages, setTotalPages] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(8);
+  // const [totalData, setTotalData] = useState(0);
 
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const paginate = (page) => {
+    setCurrentPage(page);
   };
 
   const handleSearch = () => {
@@ -41,29 +42,29 @@ const SearchPage = () => {
   };
 
   useEffect(() => {
-    fetchDataFromApi()
-      .then((apiData) => {
+    fetchCompetitions(currentPage)
+      .then(apiData => {
         setData(apiData.rows);
         setTotalPages(apiData.total_pages);
         setItemsPerPage(apiData.limit);
+        // setTotalData(apiData.total_data);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Error fetching data from API:', error);
       });
-  }, []);
+  }, [currentPage]);
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
   const currentData = data
-    ? data
-        .filter((item) =>
-          item.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-          (tags === '' || item.tags.map((tag) => tag.name).includes(tags)) &&
-          (educationLevelId === '' ||
-            item.education_levels.map((level) => level.name).includes(educationLevelId))
-        )
-        .slice(indexOfFirstItem, indexOfLastItem)
-    : [];
+  ? data.filter((item) =>
+      item.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (tags === '' || (item.tags && item.tags.map((tag) => tag.name).includes(tags))) &&
+      (educationLevelId === '' ||
+        (item.education_levels && item.education_levels.map((level) => level.name).includes(educationLevelId)))
+    )
+  : [];
+
+  console.log(currentData)
 
   return (
     <section id='search-page'>
@@ -84,13 +85,21 @@ const SearchPage = () => {
                     className='form-select'
                   >
                     <option value=''>Semua Bidang</option>
-                    {[...new Set(currentData.map((item) => item.tags.map((tag) => tag.name)).flat())].map(
-                      (tag, index) => (
-                        <option key={index} value={tag}>
-                          {tag}
-                        </option>
+                    {currentData ? (
+                      currentData.length > 0 ? (
+                        [...new Set(
+                          currentData
+                            .filter(item => item.tags && item.tags.length) // Filter item yang memiliki tags
+                            .map((item) => item.tags.map((tag) => tag.name)).flat()
+                        )].map((tag, index) => (
+                          <option key={index} value={tag}>
+                            {tag}
+                          </option>
+                        ))
+                      ) : (
+                        <option value=''>Loading...</option>
                       )
-                    )}
+                    ) : null}
                   </select>
                 </div>
 
@@ -101,13 +110,21 @@ const SearchPage = () => {
                     className='form-select'
                   >
                     <option value=''>Semua Jenjang</option>
-                    {[...new Set(currentData.map((item) => item.education_levels.map((edu_levels) => edu_levels.name)).flat())].map(
-                      (edu_levels, index) => (
-                        <option key={index} value={edu_levels}>
-                          {edu_levels}
-                        </option>
+                    {currentData ? (
+                      currentData.length > 0 ? (
+                        [...new Set(
+                          currentData
+                            .filter(item => item.education_levels && item.education_levels.length) // Filter item yang memiliki education_levels
+                            .map((item) => item.education_levels.map((edu_levels) => edu_levels.name)).flat()
+                        )].map((edu_levels, index) => (
+                          <option key={index} value={edu_levels}>
+                            {edu_levels}
+                          </option>
+                        ))
+                      ) : (
+                        <option value=''>Loading...</option>
                       )
-                    )}
+                    ) : null}
                   </select>
                 </div>
 

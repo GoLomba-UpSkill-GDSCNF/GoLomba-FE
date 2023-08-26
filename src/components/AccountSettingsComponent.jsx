@@ -1,77 +1,70 @@
+import { useState, useEffect } from 'react';
 import { Container, Col, Row, Button, Form } from "react-bootstrap";
 
 const AccountSettingsComponent = () => {
+  const [userInfo, setUserInfo] = useState({});
+  
+  useEffect(() => {
+    async function fetchUserInfo() {
+      try {
+        const response = await fetch('http://golomba.gdsc-nf.web.id:3000/user/profile', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}` // Sesuaikan dengan cara Anda mengelola token
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setUserInfo(data.data);
+        } else {
+          console.error('Gagal mengambil informasi pengguna dari API');
+        }
+      } catch (error) {
+        console.error('Terjadi kesalahan saat mengambil informasi pengguna:', error);
+      }
+    }
+
+    fetchUserInfo();
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
+
   return (
     <div className="content-wrapper py-3">
       <div className="container-xxl flex-grow-1 container-p-y">
         <Row>
           <Col>
-          <h3 className="text-muted fw-light ms-4 mb-5">Account Settings</h3>
+            <h3 className="text-muted fw-light ms-4 mb-5">Account</h3>
           </Col>
         </Row>
         <Row>
           <Col className="mx-3">
-          <Container className="custom-card">
-            <h5 className="card-header">Profile Details</h5>
-            <hr className="my-0" />
-            <div className="card-body">
-              <Row className="align-items-start align-items-sm-center gap-4">
-                <Col className="">
-                  .image-wrapper
-                  <img
-                    src="../assets/img/avatars/1.png"
-                    alt="user-avatar"
-                    className="d-block rounded"
-                    height="100"
-                    width="100"
-                    id="uploadedAvatar"
-                  />
-                  <div className="button-wrapper">
-                    <label htmlFor="upload" className="btn btn-primary me-2 mb-4" tabIndex="0">
-                      <span className="d-none d-sm-block">Upload new photo</span>
-                      <i className="bx bx-upload d-block d-sm-none"></i>
-                      <input
-                        type="file"
-                        id="upload"
-                        className="account-file-input"
-                        hidden
-                        accept="image/png, image/jpeg"
-                      />
-                    </label>
-                    <button type="button" className="btn btn-outline-secondary account-image-reset mb-4">
-                      <i className="bx bx-reset d-block d-sm-none"></i>
-                      <span className="d-none d-sm-block">Reset</span>
-                    </button>
-
-                    <p className="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
-                  </div>
-                </Col>
-              </Row>
-            </div>
-            <hr className="my-0" />
-            <div className="card-body">
-              <Form id="formAccountSettings" onSubmit={(e) => e.preventDefault()}>
-                <Row>
-                  <Col md={6}>
-                    <Form.Group controlId="firstName">
-                      <Form.Label>First Name</Form.Label>
-                      <Form.Control type="text" value="John" autoFocus />
-                    </Form.Group>
+            <Container className="custom-card">
+              <h5 className="card-header py-2 mb-2">Profile Details</h5>
+              <hr className="my-0" />
+              <div className="card-body">
+                <Row className="align-items-start align-items-sm-center gap-4">
+                  <Col className=" my-3 py-2">
+                    <h6>Username: {userInfo.username}</h6>
+                    <h6>Email: {userInfo.email}</h6>
+                    <h6>Role: {userInfo.role?.name}</h6>
                   </Col>
-                  {/* Other form groups */}
                 </Row>
-                {/* Other form groups */}
-                <div className="mt-2">
-                  <Button variant="primary" className="me-2" type="submit">
-                    Save changes
-                  </Button>
-                  <Button variant="outline-secondary" type="reset">
-                    Cancel
-                  </Button>
-                </div>
-              </Form>
-            </div>
-          </Container>
+              </div>
+              <hr className="my-0" />
+              <div className="card-body">
+                <Form id="formAccountSettings" onSubmit={(e) => e.preventDefault()}>
+                  <div className="mt-2">
+                    <Button variant="primary" className="me-2 mt-2" onClick={handleLogout}>
+                      Log-Out
+                    </Button>
+                  </div>
+                </Form>
+              </div>
+            </Container>
           </Col>
         </Row>
       </div>

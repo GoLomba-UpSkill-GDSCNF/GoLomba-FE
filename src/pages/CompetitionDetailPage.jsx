@@ -2,37 +2,50 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Row, Container } from 'react-bootstrap';
-import { fetchDataFromApi } from '../data/fetchDataFromApi';
+import { fetchCompetitionsById } from '../data/fetchCompetitions'; // Pastikan path-nya sesuai dengan struktur proyek Anda
 import { formatDate } from '../data/function';
+import { ThreeDots } from "react-loader-spinner";
 
 const CompetitionDetail = () => {
   const { id } = useParams();
   const [competition, setCompetition] = useState({});
 
   useEffect(() => {
-    fetchDataFromApi()
-      .then(apiData => {
-        setCompetition(apiData.rows);
-        const selectedCompetition = apiData.rows.find(item => item.id === parseInt(id));
-
-        if (selectedCompetition) {
-          setCompetition(selectedCompetition);
+    const fetchData = async () => {
+      try {
+        const apiData = await fetchCompetitionsById(id);
+        if (apiData) {
+          setCompetition(apiData); 
         } else {
           console.error(`Competition with ID ${id} not found.`);
         }
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching data from API:', error);
-      });
+      }
+    };
+
+    fetchData(); 
   }, [id]);
 
   if (Object.keys(competition).length === 0) {
-    return <p>Loading...</p>;
+    return (
+      <div className='d-flex justify-content-center align-items-center' style={{ height: '100vh' }}>
+        <ThreeDots
+        height="80"
+        width="80"
+        radius="9"
+        color="#FF6551"
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+        />
+      </div>
+    )
+    ;
   }
 
   const tagName = competition.tags.map(tag => tag.name);
-  console.log("ini tagname" + tagName);
-
 
   return (
     <div>
@@ -52,8 +65,8 @@ const CompetitionDetail = () => {
             <Col md={6}>
               <h1 className="display-6 fw-bolder">{competition.name}</h1>
               <div className="fs-5 my-4">
-                {competition.tags?.map((tag, index) => (
-                  <span key={index} className="btn btn-outline-dark ms-2">{tag.name}</span>
+                {tagName.map((tag, index) => (
+                  <span key={index} className="btn btn-outline-dark ms-2">{tag}</span>
                 ))}
               </div>
               <hr />
@@ -89,4 +102,3 @@ const CompetitionDetail = () => {
 };
 
 export default CompetitionDetail;
-

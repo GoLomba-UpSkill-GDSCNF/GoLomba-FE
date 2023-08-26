@@ -8,6 +8,8 @@ import 'swiper/css/navigation';
 
 import Logo from "../assets/img/logo/logo-go-lomba.svg";
 import AvatarAldi from "../assets/img/aldi.jpg";
+import AvatarRaihan from "../assets/img/raihan.jpg";
+import AvatarKrisna from "../assets/img/krisna.jpg";
 import DefaultAvatar from "../assets/img/default-avatar.png";
 
 const AboutPage = () => {
@@ -21,7 +23,7 @@ const AboutPage = () => {
         {
             name: 'Krisna Novianto',
             description: 'Frontend Team',
-            imageUrl: DefaultAvatar
+            imageUrl: AvatarKrisna
         },
         {
             name: 'Syafina',
@@ -31,7 +33,7 @@ const AboutPage = () => {
         {
             name: 'Muhammad Raihan',
             description: 'Backend Team',
-            imageUrl: DefaultAvatar
+            imageUrl: AvatarRaihan
         },
         {
             name: 'Fazri Egi Ramadhan',

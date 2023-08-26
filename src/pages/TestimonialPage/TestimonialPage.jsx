@@ -16,14 +16,14 @@ const TestimonialPage = () => {
                     <Container>
                         <Row>
                             <Col>
-                                <div className={styles.contaner}>
+                                <div className={styles.contaner} style={{color: "white"}}>
                                     <h2 className={styles.text1}>Apa Kata Mereka?</h2>
                                     <p className={styles.text1}>Kami percaya bahwa setiap informasi yang kami berikan dapat menjadi langkah awal menuju prestasi luar biasa, dan testimoni dari pengguna kami adalah bukti bahwa kami memberikan nilai tambah yang nyata.</p>
                                 </div>
                             </Col>
                         </Row>
                         <Row>
-                            <div className={styles.cardcontainer}>
+                            <div className={styles.cardcontainer} style={{textAlign: "center"}}>
                             {data.map(testimonial => (
                                 <Col key={testimonial.id}>
                                     <div className={styles.card}>

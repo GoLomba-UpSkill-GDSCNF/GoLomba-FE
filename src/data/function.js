@@ -13,3 +13,7 @@ export const formatDate = (dateTimeString) => {
   
     return `${tanggal} ${bulan} ${tahun}`;
   };
+
+export const isAuthenticated = () => {
+  return localStorage.getItem("token") !== null;
+};
