@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
+import { redirect } from 'react-router-dom';
 import { Container, Col, Row, Button, Form } from "react-bootstrap";
 
 const AccountSettingsComponent = () => {
   const [userInfo, setUserInfo] = useState({});
-  
+
   useEffect(() => {
     async function fetchUserInfo() {
       try {
-        const response = await fetch('http://golomba.gdsc-nf.web.id:3000/user/profile', {
+        const response = await fetch('https://golomba.gdsc-nf.web.id/api/user/profile', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}` // Sesuaikan dengan cara Anda mengelola token
           }
@@ -29,7 +30,7 @@ const AccountSettingsComponent = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    redirect("/login");
   };
 
   return (

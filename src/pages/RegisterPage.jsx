@@ -1,5 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { redirect } from "react-router-dom";
 import { useState } from "react";
 import LoginImage from "../assets/img/Ilustration.png";
 import Swal from "sweetalert2";
@@ -17,7 +18,7 @@ const RegisterPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://golomba.gdsc-nf.web.id:3000/user/register", {
+      const response = await fetch("https://golomba.gdsc-nf.web.id/api/user/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +34,7 @@ const RegisterPage = () => {
           title: "Success",
           text: "Registration successful!",
         });
-        window.location.href = "/login";
+        redirect("/login");
       } else {
         Swal.fire({
           icon: "error",
@@ -51,12 +52,12 @@ const RegisterPage = () => {
   return (
     <div className="login py-5 w-100 min-vh-100">
       <Container>
-      <Row className='mb-2'>
-            <Link to={'/'} className='text-dark'>
-              <i className='fa fa-chevron-left fs-3'>
-              </i>
-            </Link>
-          </Row>
+        <Row className='mb-2'>
+          <Link to={'/'} className='text-dark'>
+            <i className='fa fa-chevron-left fs-3'>
+            </i>
+          </Link>
+        </Row>
         <Row className="box d-flex align-items-center">
           <Col lg="6">
             <img src={LoginImage} alt="login.png" />

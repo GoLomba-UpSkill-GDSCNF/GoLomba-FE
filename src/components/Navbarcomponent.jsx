@@ -2,9 +2,10 @@ import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import Logo from "../assets/img/logo/logo-go-lomba.svg";
 import { navLinks } from '../data/index'
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 
 const Navbarcomponent = () => {
+  const navigate = useNavigate();
   const [changeColor, setChangeColor] = useState(false);
   const [userName, setUserName] = useState(""); // State untuk menyimpan nama pengguna
   const isAuthenticated = localStorage.getItem("token") !== null;
@@ -22,17 +23,21 @@ const Navbarcomponent = () => {
     window.addEventListener("scroll", changeBackgroundColor);
   }, []);
 
+  const refreshPage = () => {
+    navigate(0);
+  }
+
   const handleLogout = () => {
     localStorage.removeItem("token");
 
-    window.location.reload();
+    refreshPage()
   };
 
   useEffect(() => {
     // Fungsi untuk mengambil nama pengguna dari API
     async function fetchUserName() {
       try {
-        const response = await fetch('http://golomba.gdsc-nf.web.id:3000/user/profile', {
+        const response = await fetch('https://golomba.gdsc-nf.web.id/api/user/profile', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}` // Sesuaikan dengan cara Anda mengelola token
           }

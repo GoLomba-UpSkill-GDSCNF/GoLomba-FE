@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { redirect } from "react-router-dom";
 import LoginImage from "../assets/img/Ilustration.png";
 import Swal from 'sweetalert2'
 import { ThreeDots } from "react-loader-spinner";
@@ -18,7 +19,7 @@ const LoginPage = () => {
     // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTMxNDcwNzAsImlkIjoxLCJyb2xlIjoxfQ.CIBOir5xtDICqUvxP17Rc-KaUJGqjaw7k7id8DcxFBw";
 
     try {
-      const response = await fetch("http://golomba.gdsc-nf.web.id:3000/user/login", {
+      const response = await fetch("https://golomba.gdsc-nf.web.id/api/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,10 +31,10 @@ const LoginPage = () => {
       console.log(response.ok)
 
       if (response.ok) {
-      const responseData = await response.json();
-      const token = responseData.data.token;
-      localStorage.setItem("token", token);
-        window.location.href = "/admin";
+        const responseData = await response.json();
+        const token = responseData.data.token;
+        localStorage.setItem("token", token);
+        redirect("/admin/dashboard");
       } else {
         Swal.fire({
           icon: 'error',

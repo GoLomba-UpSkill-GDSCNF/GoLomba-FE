@@ -1,5 +1,6 @@
 import { NavDropdown } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
+import { redirect } from 'react-router-dom';
 
 const NavbarComponent = () => {
   const [userName, setUserName] = useState("Nama Pengguna");
@@ -7,14 +8,14 @@ const NavbarComponent = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    redirect("/login");
   };
 
   useEffect(() => {
     // Fungsi untuk mengambil nama pengguna dari API
     async function fetchUserName() {
       try {
-        const response = await fetch('http://golomba.gdsc-nf.web.id:3000/user/profile', {
+        const response = await fetch('https://golomba.gdsc-nf.web.id/api/user/profile', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}` // Anda mungkin perlu menambahkan token di sini
           },
@@ -34,12 +35,12 @@ const NavbarComponent = () => {
 
     // Panggil fungsi fetchUserName untuk mengambil nama pengguna saat komponen dimuat
     fetchUserName();
-  }, []); 
+  }, []);
 
   return (
     <nav className="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
       {/* ... Navbar toggle and search input */}
-      
+
       <div className='navbar-nav-right d-flex align-items-center' id="navbar-collapse">
         <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
           <a className="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
@@ -59,10 +60,10 @@ const NavbarComponent = () => {
           </div>
         </div>
         {/* <!-- /Search --> */}
-        
+
         <ul className="navbar-nav flex-row align-items-center ms-auto">
-         {/* User Dropdown */}
-         <NavDropdown title={"Hallo! "+ userName} id="userDropdown" align="end">
+          {/* User Dropdown */}
+          <NavDropdown title={"Hallo! " + userName} id="userDropdown" align="end">
             {isAuthenticated && (
               <>
                 <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>

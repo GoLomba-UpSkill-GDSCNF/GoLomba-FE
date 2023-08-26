@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Col, Row, Button, Modal, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { redirect } from "react-router-dom";
 import { formatDate } from '../data/function';
 import Logo from '../assets/img/logo/logo-go-lomba.svg';
 import '../pages/SearchPage/index.css';
@@ -27,7 +28,7 @@ const DashboardComponent = () => {
 
   useEffect(() => {
     // Ganti URL sesuai dengan API yang sesuai
-    fetch('http://golomba.gdsc-nf.web.id:3000/user/competitions', {
+    fetch('https://golomba.gdsc-nf.web.id/api/user/competitions', {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`,
@@ -60,7 +61,7 @@ const DashboardComponent = () => {
 
     const token = localStorage.getItem("token");
 
-    fetch("http://golomba.gdsc-nf.web.id:3000/competition", {
+    fetch("https://golomba.gdsc-nf.web.id/api/competition", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${token}`,
@@ -122,7 +123,7 @@ const DashboardComponent = () => {
 
     const token = localStorage.getItem("token");
 
-    fetch(`http://golomba.gdsc-nf.web.id:3000/competition/${selectedCardId}`, {
+    fetch(`https://golomba.gdsc-nf.web.id/api/competition/${selectedCardId}`, {
       method: "PUT",
       headers: {
         "Authorization": `Bearer ${token}`,
@@ -152,14 +153,14 @@ const DashboardComponent = () => {
   const deleteCard = (id) => {
     const token = localStorage.getItem("token");
 
-    fetch(`http://golomba.gdsc-nf.web.id:3000/competition/${id}`, {
+    fetch(`https://golomba.gdsc-nf.web.id/api/competition/${id}`, {
       method: "DELETE",
       headers: {
         "Authorization": `Bearer ${token}`,
       },
     })
       .then(() => {
-        window.location.reload();
+        redirect("/admin/dashboard");
         const updatedCards = cards.filter((card) => card.id !== id);
         setCards(updatedCards);
       })
@@ -171,7 +172,7 @@ const DashboardComponent = () => {
 
 
   useEffect(() => {
-    fetch('http://golomba.gdsc-nf.web.id:3000/tags')
+    fetch('https://golomba.gdsc-nf.web.id/api/tags')
       .then((response) => response.json())
       .then((data) => {
         setTags(data);
@@ -180,7 +181,7 @@ const DashboardComponent = () => {
         console.error('Error fetching tags:', error);
       });
 
-    fetch('http://golomba.gdsc-nf.web.id:3000/edu-levels')
+    fetch('https://golomba.gdsc-nf.web.id/api/edu-levels')
       .then((response) => response.json())
       .then((data) => {
         setEducationLevels(data);
